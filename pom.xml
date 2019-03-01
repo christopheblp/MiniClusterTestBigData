@@ -14,6 +14,8 @@
         <hive.version>2.3.3</hive.version>
         <spark.version>2.3.0</spark.version>
         <scala.binary.version>2.11.8</scala.binary.version>
+        <junit.jupiter.version>5.4.0</junit.jupiter.version>
+        <junit.platform.version>5.4.0</junit.platform.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
     </properties>
@@ -24,6 +26,19 @@
             <artifactId>hiverunner</artifactId>
             <version>4.1.0</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.jupiter.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-runner</artifactId>
+            <version>${junit.platform.version}</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
 </project>
