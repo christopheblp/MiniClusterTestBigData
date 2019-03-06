@@ -4,11 +4,7 @@ package MiniClusters;
 import com.klarna.hiverunner.HiveShell;
 import com.klarna.hiverunner.StandaloneHiveRunner;
 import com.klarna.hiverunner.annotations.HiveSQL;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.jupiter.api.Disabled;
+import org.junit.*;
 import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
 
@@ -63,7 +59,53 @@ public class MiniClusterHiveTest {
                 .toString());
     }
 
-    @Disabled("Use for simple test without external file")
+    @Before
+    public void createORCTable() {
+        shell.execute(new StringBuilder()
+                .append("CREATE TABLE source_db.survey2 (")
+                .append("submittedTime STRING,")
+                .append("age STRING,")
+                .append("gender STRING,")
+                .append("country STRING,")
+                .append("state STRING,")
+                .append("self_employed STRING,")
+                .append("family_history STRING,")
+                .append("treatment STRING,")
+                .append("work_interfere STRING,")
+                .append("no_employees STRING,")
+                .append("remote_work STRING,")
+                .append("tech_company STRING,")
+                .append("benefits STRING,")
+                .append("care_options STRING,")
+                .append("wellness_program STRING,")
+                .append("seek_help STRING,")
+                .append("anonymity STRING,")
+                .append("leave STRING,")
+                .append("mental_health_consequence STRING,")
+                .append("phys_health_consequence STRING,")
+                .append("coworkers STRING,")
+                .append("supervisor STRING,")
+                .append("mental_health_interview STRING,")
+                .append("phys_health_interview STRING,")
+                .append("mental_vs_physical STRING,")
+                .append("obs_consequence STRING,")
+                .append("comments STRING) ")
+                .append("ROW FORMAT DELIMITED ")
+                .append("FIELDS TERMINATED BY ',' ")
+                .append("STORED AS ORC tblproperties (\"orc.compress\"=\"ZLIB\"); ")
+                .toString());
+
+    }
+
+    /**
+     * We use temporary table survey to load the orc table survey2
+     */
+    @Test
+    public void loadOrcSurvey2Table() {
+        shell.execute("INSERT INTO TABLE source_db.survey2 SELECT * from source_db.survey");
+    }
+
+    @Ignore("Use for simple test without external file")
     public void simpleInit() {
         shell.execute("CREATE DATABASE source_db");
         shell.execute("CREATE TABLE source_db.test (" +
@@ -72,7 +114,7 @@ public class MiniClusterHiveTest {
 
     }
 
-    @Disabled
+    @Ignore
     public void simpleInsertionDataIntoTable() {
         shell.insertInto("source_db", "test")
                 .withAllColumns()
