@@ -96,8 +96,8 @@ public class MiniClusterHiveTest {
     @Before
     public void createParquetTable() {
         shell.execute("CREATE TABLE source_db.survey3 " +
-                "STORED AS PARQUET " +
-                "AS SELECT * FROM source_db.survey;");
+                "STORED AS PARQUET TBLPROPERTIES (\"parquet.compression\"=\"SNAPPY\")\n" +
+                " AS SELECT * FROM source_db.survey;");
     }
 
     /**
