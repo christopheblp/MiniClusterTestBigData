@@ -23,78 +23,81 @@ public class MiniClusterHiveTest {
     @Before
     public void createDatabaseAndTable() {
         shell.execute("CREATE DATABASE source_db");
-        shell.execute(new StringBuilder()
-                .append("CREATE TABLE source_db.survey (")
-                .append("submittedTime STRING,")
-                .append("age STRING,")
-                .append("gender STRING,")
-                .append("country STRING,")
-                .append("state STRING,")
-                .append("self_employed STRING,")
-                .append("family_history STRING,")
-                .append("treatment STRING,")
-                .append("work_interfere STRING,")
-                .append("no_employees STRING,")
-                .append("remote_work STRING,")
-                .append("tech_company STRING,")
-                .append("benefits STRING,")
-                .append("care_options STRING,")
-                .append("wellness_program STRING,")
-                .append("seek_help STRING,")
-                .append("anonymity STRING,")
-                .append("leave STRING,")
-                .append("mental_health_consequence STRING,")
-                .append("phys_health_consequence STRING,")
-                .append("coworkers STRING,")
-                .append("supervisor STRING,")
-                .append("mental_health_interview STRING,")
-                .append("phys_health_interview STRING,")
-                .append("mental_vs_physical STRING,")
-                .append("obs_consequence STRING,")
-                .append("comments STRING) ")
-                .append("ROW FORMAT DELIMITED ")
-                .append("FIELDS TERMINATED BY ',' ")
-                .append("STORED AS TEXTFILE ")
-                .append("LOCATION '/home/finaxys/IdeaProjects/MiniClusterTestBigData/src/test/resources/datasets/'")
-                .toString());
+        shell.execute("CREATE TABLE source_db.survey (" +
+                "submittedTime STRING," +
+                "age STRING," +
+                "gender STRING," +
+                "country STRING," +
+                "state STRING," +
+                "self_employed STRING," +
+                "family_history STRING," +
+                "treatment STRING," +
+                "work_interfere STRING," +
+                "no_employees STRING," +
+                "remote_work STRING," +
+                "tech_company STRING," +
+                "benefits STRING," +
+                "care_options STRING," +
+                "wellness_program STRING," +
+                "seek_help STRING," +
+                "anonymity STRING," +
+                "leave STRING," +
+                "mental_health_consequence STRING," +
+                "phys_health_consequence STRING," +
+                "coworkers STRING," +
+                "supervisor STRING," +
+                "mental_health_interview STRING," +
+                "phys_health_interview STRING," +
+                "mental_vs_physical STRING," +
+                "obs_consequence STRING," +
+                "comments STRING) " +
+                "ROW FORMAT DELIMITED " +
+                "FIELDS TERMINATED BY ',' " +
+                "STORED AS TEXTFILE " +
+                "LOCATION '/home/finaxys/IdeaProjects/MiniClusterTestBigData/src/test/resources/datasets/'");
     }
 
     @Before
     public void createORCTable() {
-        shell.execute(new StringBuilder()
-                .append("CREATE TABLE source_db.survey2 (")
-                .append("submittedTime STRING,")
-                .append("age STRING,")
-                .append("gender STRING,")
-                .append("country STRING,")
-                .append("state STRING,")
-                .append("self_employed STRING,")
-                .append("family_history STRING,")
-                .append("treatment STRING,")
-                .append("work_interfere STRING,")
-                .append("no_employees STRING,")
-                .append("remote_work STRING,")
-                .append("tech_company STRING,")
-                .append("benefits STRING,")
-                .append("care_options STRING,")
-                .append("wellness_program STRING,")
-                .append("seek_help STRING,")
-                .append("anonymity STRING,")
-                .append("leave STRING,")
-                .append("mental_health_consequence STRING,")
-                .append("phys_health_consequence STRING,")
-                .append("coworkers STRING,")
-                .append("supervisor STRING,")
-                .append("mental_health_interview STRING,")
-                .append("phys_health_interview STRING,")
-                .append("mental_vs_physical STRING,")
-                .append("obs_consequence STRING,")
-                .append("comments STRING) ")
-                .append("ROW FORMAT DELIMITED ")
-                .append("FIELDS TERMINATED BY ',' ")
-                .append("STORED AS ORC tblproperties (\"orc.compress\"=\"ZLIB\"); ")
-                .toString());
+        shell.execute("CREATE TABLE source_db.survey2 (" +
+                "submittedTime STRING," +
+                "age STRING," +
+                "gender STRING," +
+                "country STRING," +
+                "state STRING," +
+                "self_employed STRING," +
+                "family_history STRING," +
+                "treatment STRING," +
+                "work_interfere STRING," +
+                "no_employees STRING," +
+                "remote_work STRING," +
+                "tech_company STRING," +
+                "benefits STRING," +
+                "care_options STRING," +
+                "wellness_program STRING," +
+                "seek_help STRING," +
+                "anonymity STRING," +
+                "leave STRING," +
+                "mental_health_consequence STRING," +
+                "phys_health_consequence STRING," +
+                "coworkers STRING," +
+                "supervisor STRING," +
+                "mental_health_interview STRING," +
+                "phys_health_interview STRING," +
+                "mental_vs_physical STRING," +
+                "obs_consequence STRING," +
+                "comments STRING) " +
+                "ROW FORMAT DELIMITED " +
+                "FIELDS TERMINATED BY ',' " +
+                "STORED AS ORC tblproperties (\"orc.compress\"=\"ZLIB\"); ");
 
+    }
+
+    @Before
+    public void createParquetTable() {
+        shell.execute("CREATE TABLE source_db.survey3 " +
+                "STORED AS PARQUET " +
+                "AS SELECT * FROM source_db.survey;");
     }
 
     /**
