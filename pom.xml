@@ -14,24 +14,35 @@
         <junit.version>4.12</junit.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
+        <jackson-databind.version>2.6.5</jackson-databind.version>
     </properties>
     <dependencies>
         <!--hive dependencies-->
         <dependency>
             <groupId>com.klarna</groupId>
             <artifactId>hiverunner</artifactId>
-            <version>4.1.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.hive</groupId>
+                    <artifactId>hive-service</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.tez</groupId>
+                    <artifactId>tez-dag</artifactId>
+                </exclusion>
+            </exclusions>
+            <version>3.2.1</version>
         </dependency>
         <dependency>
             <groupId>org.apache.hive</groupId>
             <artifactId>hive-exec</artifactId>
-            <version>2.3.3</version>
+            <version>1.2.1</version>
         </dependency>
 
         <dependency>
             <groupId>org.apache.hive</groupId>
             <artifactId>hive-common</artifactId>
-            <version>2.3.3</version>
+            <version>1.2.1</version>
         </dependency>
 
         <!--hadoop dependencies-->
@@ -72,6 +83,26 @@
             <scope>provided</scope>
         </dependency>
 
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson-databind.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson-databind.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson-databind.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.janino</groupId>
+            <artifactId>janino</artifactId>
+            <version>3.0.8</version>
+        </dependency>
 
     </dependencies>
 </project>
