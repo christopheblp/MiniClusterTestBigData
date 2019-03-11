@@ -12,15 +12,19 @@ public class SparkJobsTest {
     public void setUp() {
         spark = SparkSession
                 .builder()
+                .master("local[4]")
                 .appName("Java Spark Hive Example")
-                .config("spark.master", "local")
+                .config("spark.sql.warehouse.dir", "./target/warehouse")
+                .config("spark.ui.enabled", "false")
+                .config("spark.driver.allowMultipleContexts", "true")
+                .config("spark.driver.port", 50500)
                 .enableHiveSupport()
                 .getOrCreate();
     }
 
     @Test
     public void queryHiveTable() {
-        spark.sqlContext().sql("show databases").show();
+        spark.sql("show databases").show();
     }
 
 

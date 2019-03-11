@@ -1,30 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>com.finaxys</groupId>
     <artifactId>MiniClusterTestBigData</artifactId>
     <version>1.0-SNAPSHOT</version>
-
     <properties>
         <java.version>1.8</java.version>
         <hadoop.version>2.7.3</hadoop.version>
         <hive.version>2.3.3</hive.version>
         <spark.version>2.3.0</spark.version>
-        <scala.binary.version>2.11.8</scala.binary.version>
+        <scala.binary.version>2.11</scala.binary.version>
         <junit.version>4.12</junit.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
     </properties>
-
     <dependencies>
         <!--hive dependencies-->
         <dependency>
             <groupId>com.klarna</groupId>
             <artifactId>hiverunner</artifactId>
             <version>4.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.hive</groupId>
+            <artifactId>hive-exec</artifactId>
+            <version>2.3.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.hive</groupId>
+            <artifactId>hive-common</artifactId>
+            <version>2.3.3</version>
         </dependency>
 
         <!--hadoop dependencies-->
@@ -34,33 +41,37 @@
             <version>${hadoop.version}</version>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
-
         <!--Spark dependencies-->
         <dependency>
             <groupId>org.apache.spark</groupId>
-            <artifactId>spark-core_2.11</artifactId>
+            <artifactId>spark-core_${scala.binary.version}</artifactId>
             <version>${spark.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.apache.spark</groupId>
-            <artifactId>spark-sql_2.11</artifactId>
+            <artifactId>spark-sql_${scala.binary.version}</artifactId>
             <version>${spark.version}</version>
         </dependency>
+        <!--FIXME Dependency not compatible with Hive runner-->
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-hive_2.11</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.spark-project.hive</groupId>
+                    <artifactId>hive-exec</artifactId>
+                </exclusion>
+            </exclusions>
+            <version>2.3.0</version>
+            <scope>provided</scope>
+        </dependency>
 
-        <!--  <dependency>
-              <groupId>org.apache.spark</groupId>
-              <artifactId>spark-hive_2.11</artifactId>
-              <version>${spark.version}</version>
-          </dependency>-->
 
     </dependencies>
-
 </project>
