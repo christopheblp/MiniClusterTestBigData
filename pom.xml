@@ -8,7 +8,7 @@
     <properties>
         <java.version>1.8</java.version>
         <hadoop.version>2.7.3</hadoop.version>
-        <hive.version>2.3.3</hive.version>
+        <hive.version>1.2.1</hive.version>
         <spark.version>2.3.0</spark.version>
         <scala.binary.version>2.11</scala.binary.version>
         <junit.version>4.12</junit.version>
@@ -21,7 +21,7 @@
         <dependency>
             <groupId>com.klarna</groupId>
             <artifactId>hiverunner</artifactId>
-            <exclusions>
+            <!--<exclusions>
                 <exclusion>
                     <groupId>org.apache.hive</groupId>
                     <artifactId>hive-service</artifactId>
@@ -30,22 +30,32 @@
                     <groupId>org.apache.tez</groupId>
                     <artifactId>tez-dag</artifactId>
                 </exclusion>
-            </exclusions>
+            </exclusions>-->
             <version>3.2.1</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.hive</groupId>
-            <artifactId>hive-exec</artifactId>
-            <version>1.2.1</version>
-        </dependency>
+        <!-- <dependency>
+             <groupId>org.apache.hive</groupId>
+             <artifactId>hive-exec</artifactId>
+             <version>${hive.version}</version>
+         </dependency>-->
 
-        <dependency>
-            <groupId>org.apache.hive</groupId>
-            <artifactId>hive-common</artifactId>
-            <version>1.2.1</version>
-        </dependency>
+        <!-- <dependency>
+             <groupId>org.apache.hive</groupId>
+             <artifactId>hive-common</artifactId>
+             <version>${hive.version}</version>
+         </dependency>-->
 
         <!--hadoop dependencies-->
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-common</artifactId>
+            <version>${hadoop.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-yarn-common</artifactId>
+            <version>${hadoop.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-minicluster</artifactId>
@@ -83,11 +93,11 @@
             <scope>provided</scope>
         </dependency>
 
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>${jackson-databind.version}</version>
-        </dependency>
+        <!-- <dependency>
+             <groupId>com.fasterxml.jackson.core</groupId>
+             <artifactId>jackson-databind</artifactId>
+             <version>${jackson-databind.version}</version>
+         </dependency>-->
         <!-- <dependency>
              <groupId>com.fasterxml.jackson.core</groupId>
              <artifactId>jackson-annotations</artifactId>
