@@ -14,8 +14,8 @@
         <junit.version>4.12</junit.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
-        <jackson-databind.version>2.6.5</jackson-databind.version>
     </properties>
+
     <dependencies>
         <!--hive dependencies-->
         <dependency>
@@ -33,17 +33,23 @@
             </exclusions>-->
             <version>3.2.1</version>
         </dependency>
-        <!-- <dependency>
-             <groupId>org.apache.hive</groupId>
-             <artifactId>hive-exec</artifactId>
-             <version>${hive.version}</version>
-         </dependency>-->
+        <dependency>
+            <groupId>org.apache.hive</groupId>
+            <artifactId>hive-exec</artifactId>
+            <version>${hive.version}</version>
+        </dependency>
 
-        <!-- <dependency>
-             <groupId>org.apache.hive</groupId>
-             <artifactId>hive-common</artifactId>
-             <version>${hive.version}</version>
-         </dependency>-->
+        <dependency>
+            <groupId>org.apache.hive</groupId>
+            <artifactId>hive-common</artifactId>
+            <version>${hive.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.hive</groupId>
+            <artifactId>hive-metastore</artifactId>
+            <version>${hive.version}</version>
+        </dependency>
 
         <!--hadoop dependencies-->
         <dependency>
@@ -93,21 +99,6 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- <dependency>
-             <groupId>com.fasterxml.jackson.core</groupId>
-             <artifactId>jackson-databind</artifactId>
-             <version>${jackson-databind.version}</version>
-         </dependency>-->
-        <!-- <dependency>
-             <groupId>com.fasterxml.jackson.core</groupId>
-             <artifactId>jackson-annotations</artifactId>
-             <version>${jackson-databind.version}</version>
-         </dependency>
-         <dependency>
-             <groupId>com.fasterxml.jackson.core</groupId>
-             <artifactId>jackson-core</artifactId>
-             <version>${jackson-databind.version}</version>
-         </dependency>-->
         <dependency>
             <groupId>org.codehaus.janino</groupId>
             <artifactId>janino</artifactId>

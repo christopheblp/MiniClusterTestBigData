@@ -7,12 +7,13 @@ import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
 import java.io.IOException;
+import java.util.UUID;
 
 public class SparkJobsTest {
 
     private SparkSession spark;
     @Rule
-    public TemporaryFolder folder= new TemporaryFolder();
+    public TemporaryFolder folder = new TemporaryFolder();
 
     @Before
     public void setUp() throws IOException {
@@ -20,6 +21,7 @@ public class SparkJobsTest {
                 .builder()
                 .master("local[4]")
                 .appName("Java Spark Hive Example")
+                .config("hive.metastore.uris", "jdbc:hsqldb:mem:" + UUID.randomUUID().toString())
                 .config("spark.sql.warehouse.dir", folder.newFolder().getAbsolutePath())
 //                .config("spark.ui.enabled", "false")
 //                .config("spark.driver.allowMultipleContexts", "true")
